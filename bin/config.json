@@ -1,0 +1,18 @@
+{
+  "port": 3000,
+  "mongoose": {
+    "connection": "mongodb://localhost/social_network",
+    "options": {
+      "server": {
+        "socketOptions": {
+          "keepAlive": 1
+        }
+      }
+    }
+  },
+  "session": {
+    "secret": "secret_key",
+    "resave": false,
+    "saveUninitialized": true
+  }
+}

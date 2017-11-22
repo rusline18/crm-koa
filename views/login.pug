@@ -1,0 +1,16 @@
+extends layout
+
+block content
+  .container
+    if(message)
+      p=message
+    h1 Авторизация
+    form(method='post')
+      div(class='input-field col s6')
+        input#login(type='text', name='username' required=true)
+        label(for='login') Логин
+      div(class='input-field col s6')
+        input#password(type='password', name='password' required=true)
+        label(for='password') Пароль
+      button(class='btn waves-effect waves-light', type='Login') Войти
+      a(href='/registration') Зарегестрироваться
