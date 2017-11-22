@@ -2,46 +2,46 @@ const Router = require('koa-router'),
     passport = require('../bin/passport'),
     router = new Router();
 
-router.get('/', async (ctx) => {
-    await ctx.render('login', {title: 'Авторизация'});
-});
-
-router.get('/registration', async (ctx) => {
-    await ctx.render('registration', {title: 'Регистрация'});
-});
-
-router.post('/registration', async (ctx) => {
-    try {
-        ctx.body = await User.create(ctx.request.body);
+router
+    .get('/', async (ctx) => {
+        auth(ctx);
+        await ctx.render('login', {title: 'Авторизация'});
+    })
+    .get('/registration', async (ctx) => {
+        auth(ctx);
+        await ctx.render('registration', {title: 'Регистрация'});
+    })
+    .get('/logout', async ctx => {
+        ctx.isAuthenticated();
+        await ctx.logout();
         ctx.redirect('/');
-    }
-    catch (err) {
-        ctx.status = 400;
-        await ctx.render('registration', {title: 'Регистрация', message: 'Такой пользователь зарегестрирован'})
-    }
-});
-
-router.post('/', async (ctx) => {
-    await passport.authenticate('local', async(err, user) => {
-        if(user === false){
-            await ctx.render('login', {title: 'Авторизация', message: 'Неверный логин или пароль'});
-        } else {
-            ctx.redirect('/user');
+    })
+    .post('/registration', async (ctx) => {
+        try {
+            ctx.body = await User.create(ctx.request.body);
+            ctx.redirect('/');
         }
-    })(ctx)
-});
+        catch (err) {
+            ctx.status = 400;
+            await ctx.render('registration', {title: 'Регистрация', message: 'Такой пользователь зарегестрирован'})
+        }
+    })
+    .post('/', async (ctx) => {
+        await passport.authenticate('local', async(err, user) => {
+            if(user === false){
+                await ctx.render('login', {title: 'Авторизация', message: 'Неверный логин или пароль'});
+            } else {
+                ctx.login(user, async (err) => {
+                    await err ? ctx.body = err : ctx.redirect('/user');
+                });
+            }
+        })(ctx)
+    });
 
-router.get('/user', async(ctx) => {
-    console.log(ctx.passport.user);
-    ctx.body = await ctx.passport.user;
-});
-
-router.get('/logout', async ctx => {
-    ctx.isAuthenticated();
-    ctx.isUnauthenticated();
-    await ctx.login();
-    ctx.logout();
-    ctx.redirect('/');
-});
+function auth(ctx) {
+    if(ctx.isAuthenticated()){
+        ctx.redirect('/user');
+    }
+}
 
 module.exports = router;

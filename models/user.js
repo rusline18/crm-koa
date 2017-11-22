@@ -5,8 +5,8 @@ const schema = new Schema({
     displayName: String,
     username: {
         type: String,
-        required: 'Укажите логин',
-        unique: 'Такой пользователь уже зарегестрирован',
+        required: [true, 'Укажите логин'],
+        unique: [true, 'Такой пользователь уже зарегестрирован'],
     },
     passwordHash: String,
     salt: String,

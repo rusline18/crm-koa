@@ -17,14 +17,12 @@ passport.use(new LocalStrategy(
 );
 
 passport.serializeUser((user, done) => {
-    console.log('serializeUser');
     done(null, user);
 });
 
 passport.deserializeUser((id, done) => {
-    console.log('deserializeUser');
     User.findById(id, (err, user) => {
-        done(err, user);
+        done(err, user.username);
     })
 });
 module.exports = passport;
