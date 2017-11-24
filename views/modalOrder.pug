@@ -1,0 +1,68 @@
+#modal1.modal
+    .modal-content
+        h4 Создать заказ
+        form#form-create_zakaz(enctype='multipart/form-data' class='col s12')
+            .row.card-panel
+                h5 Информация о заказе
+                .input-field.col.s6
+                    input.validate#description-zakaz(type='text' required=true name='description')
+                    label(for='description-zakaz') Описание
+                .input-field.col.s2
+                    input.validate#number-zakaz(type='number' min='0' required=true name='number')
+                    label(for='number-zakaz') Количество
+                .input-field.col.s6
+                    textarea.materialize-textarea.validate#information-zakaz(name='information')
+                    label(for='information-zakaz') Доп. указание
+                .input-field.file-field.col.s6
+                    .btn
+                        span
+                            i.material-icons photo_camera
+                        input(type='file' name='image')
+                    .file-path-wrapper
+                        input.file-path.validate(type='text' placeholder='Загрузите файл' name='file')
+            .row.card-panel
+                h5 Клиент
+                .input-field.col.s6
+                    i.material-icons.prefix account_circle
+                    input.validate#name_client-zakaz(type='text' required=true name='name')
+                    label(for='name_client-zakaz') Имя клиента
+                .input-field.col.s4
+                    i.material-icons.prefix phone
+                    input.validate#phone_client-zakaz(type='tel' required=true name='phone')
+                    label(for='phone_client-zakaz') Телефон клиента
+                .input-field.col.s6
+                    i.material-icons.prefix email
+                    input.validate#email_client-zakaz(type='email' name='email' data-error='Неправильный формат')
+                    label(for='email_client-zakaz') Эл. почта
+            .row.card-panel
+                h5 Оплата
+                .input-field.col.s3
+                    i.material-icons.prefix attach_money
+                    input.validate#juid_payment-zakaz(type='number' name='juid')
+                    label(for='juid_payment-zakaz') Стоимость
+                .input-field.col.s3
+                    i.material-icons.prefix account_balance_wallet
+                    input.validate#prepayment_payment-zakaz(type='number' name='prepayment')
+                    label(for='prepayment_payment-zakaz') Предоплата
+            .row.card-panel
+                h5 Управление
+                .input-field.col.s5
+                    input.datepicker#datetime_control-zakaz(type='text' required=true name='time')
+                    label(for='datetime_control-zakaz') Назначить срок
+                .input-field.col.s7
+                    select(name='status')
+                        option(value='' disabled=true selected=true) Назначить ответственного
+                        option(value='0') Дизайнер
+                        option(value='1') Мастер
+                        option(value='2') Аутсорс
+                p Приоритет
+                p
+                    input#priority1(type='radio', name='prioity', value='0' checked='')
+                    label(for='priority1') Нет приоритета
+                    input#priority2(type='radio', name='prioity' value='1')
+                    label(for='priority2') Важно
+                    input#priority3(type='radio', name='prioity' value='2')
+                    label(for='priority3') Очень важно
+                .input-field.col.s12
+                    #tags.chips.chips-autocomplete
+            button(class='waves-effect waves-light btn') Создать
