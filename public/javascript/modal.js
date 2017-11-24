@@ -7,16 +7,15 @@ $(document).ready(function(){
 		time_24hr: true,
 	});
 	$('select').material_select();
-	$('.chips').material_chip();
-	$('.chips-autocomplete').material_chip({
-		autocompleteOptions: {
-			data: {
-				'Созвониться': null,
-				'Оплачено': null,
-				'Проблемный клиент': null,
+    $('.chips-autocomplete').material_chip({
+        autocompleteOptions: {
+        	data: {
+                'Созвониться': null,
+                'Крупный заказ': null,
+                'Оплачено': null
 			},
-			limit: Infinity,
-			minLength: 5
-		}
-	});
+            limit: Infinity,
+            minLength: 5
+        }
+    });
 });
