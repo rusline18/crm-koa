@@ -5,13 +5,17 @@ let mongoose = require('../bin/mongoose'),
 autoIncrement.initialize(mongoose);
 
 let schema = new Schema({
-    id_order: Number,
-    description: String,
+    orderId: Number,
+    description: {
+        type: String,
+        require: true
+    },
     information: String,
-    number: Number,
-    name: String,
-    phone: String,
-    email: String,
+    number: {
+        type: Number,
+        require: true
+    },
+    client: Object,
     juid: Number,
     prepayment: Number,
     status: {
@@ -19,8 +23,12 @@ let schema = new Schema({
         default: 0
     },
     file: String,
-    time: Date,
+    time: {
+        type: Date,
+        require: true
+    },
     prioity: Number,
+    tags: Array,
     createdAt: {
         type: Date,
         default: Date.now()
