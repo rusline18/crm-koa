@@ -1,0 +1,13 @@
+#modal-helpDesk.modal
+    .modal-content
+        h4 Создать поломку
+            form#form-create-helpdesk.col.s12
+                .row
+                    .input-field.col.s12
+                        textarea.validate.materialize-textarea#description-helpdesk(name='desctiption')
+                        label(for='description-helpdesk') Описание
+                    .input-field.col.s12
+                        i.material-icons.prefix account_circle
+                        input.validate#name_employee-helpdesk(type='text' name='name')
+                        label(for='name_employee-helpdesk') Имя сотрудника
+                button(class='waves-effect waves-light btn') Создать

@@ -1,0 +1,18 @@
+#modal-shipping.modal
+    .modal-content
+        h4 Создать доставку
+            form#form-create-shipping.col.s12
+                .row
+                    .input-field.col.s12
+                        input.datepicker#datetime-time_shipping(type='text' required=true name=time)
+                        label(for='datetime-time_shipping') Срок
+                    .input-field.col.s6
+                        input.validate#toForm-shipping(type='text' name='to' required=true)
+                        label(for='toForm-shipping') Откуда
+                    .input-field.col.s6
+                        input.validate#fromForm-shipping(type='text' name='from' required=true)
+                        label(for='fromForm-shipping') Куда
+                    .input-field.col.s12
+                        textarea.materialize-textarea#information-shipping(name='information')
+                        label(for='information-shipping') Описание
+                button(class='waves-effect waves-light btn') Создать

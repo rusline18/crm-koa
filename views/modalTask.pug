@@ -1,0 +1,27 @@
+#modal-task.modal
+    .modal-content
+        h4 Создать задачу
+            form#form-create-task.col.s12
+                .row
+                    .input-field.col.s4
+                        input.datepicker#task-time(type='text' required=true name='time')
+                        label(for='task-time') Срок
+                    .input-field.col.s4
+                        select(name='responsible')
+                            option(value='' disabled=true selected=true) Назначить ответственного
+                            option(value='0') Руслан
+                            option(value='1') Света
+                            option(value='2') Эля
+                            option(value='3') Дамир
+                    .input-field.col.s12
+                        textarea.materialize-textarea#task-description(name='description')
+                        label(for='task-description') Описание
+                    .file-field.col.s12
+                        .btn
+                            span
+                                i.material-icons photo_camera
+                            input(type='file' name='image')
+                        .file-path-wrapper
+                            input.file-path.validate(type='text' name='file')
+                button(class='waves-effect waves-light btn') Создать
+
