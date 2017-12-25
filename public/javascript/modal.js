@@ -1,6 +1,6 @@
 $(document).ready(function(){
 	$('.modal').modal();
-	$('#datetime_control-zakaz').flatpickr({
+	$('.datepicker').flatpickr({
 		enableTime: true,
 		local: 'ru',
 		minDate: 'today',
