@@ -1,7 +1,7 @@
-const Router = require('koa-router'),
-    Order = require('../models/order'),
-    moment = require('moment'),
-    router = new Router();
+    const Router = require('koa-router'),
+        Order = require('../models/order'),
+        moment = require('moment'),
+        router = new Router();
 
 moment.updateLocale('ru', {
     months: ['Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь', 'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь']
@@ -40,6 +40,17 @@ router
             await console.log(err);
         }
     })
+    .get('/order/:id', async(ctx) => {
+        try {
+            let order = await Order.findOne({orderId: ctx.params.id}).exec((err, id) => {
+                if (err) return err;
+                return id;
+            });
+            await ctx.render('order_view', {order})
+        } catch(err) {
+            await console.log(err);
+        }
+    })
     .post('/create-order', async ctx => {
         let request = ctx.request.body;
         let file = request.files;
@@ -50,9 +61,9 @@ router
         fields.file = `${parse[4]}/${parse[5]}/${parse[6]}`;
         Array.isArray(fields.tags) === false ? fields.tags = arrTags.split(',') : false;
         fields.client = new Clietn(fields.name, fields.phone, fields.email);
+        fields.user = ctx.state.user;
         try {
             let order = new Order(fields);
-            console.log(order)
             order.save();
             ctx.body = await order;
         } catch (err) {
