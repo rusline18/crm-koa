@@ -28,6 +28,7 @@ let schema = new Schema({
         require: true
     },
     prioity: Number,
+    user: String,
     tags: Array,
     createdAt: {
         type: Date,
