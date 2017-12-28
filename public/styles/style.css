@@ -1,15 +1,37 @@
 /* line 1, ../sass/style.scss */
 body {
-  /*padding: 50px;*/
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
-/* line 6, ../sass/style.scss */
+/* line 4, ../sass/style.scss */
 a {
   color: #00B7FF;
 }
 
-/* line 10, ../sass/style.scss */
+/* line 7, ../sass/style.scss */
 .navLink {
   width: 100%;
+}
+
+/* line 11, ../sass/style.scss */
+.child div {
+  height: 0;
+  opacity: 0;
+  transition: 0.5s;
+}
+/* line 16, ../sass/style.scss */
+.child p {
+  opacity: 0;
+  transition: 0.4s;
+  word-break: break-all;
+}
+
+/* line 24, ../sass/style.scss */
+.child.animate div {
+  height: 20em;
+  opacity: 1;
+}
+/* line 28, ../sass/style.scss */
+.child.animate p {
+  opacity: 1;
 }
