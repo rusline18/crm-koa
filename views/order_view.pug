@@ -1,0 +1,19 @@
+.col.s4
+    p От #{order.createdAt}
+    p Автор #{order.user}
+    p Сотрудник #{order.user}
+    p Клиент
+    p ФИО #{order.client.name}
+    p Телефон #{order.client.phone}
+    p Email #{order.client.email}
+.col.s4
+    p
+        p=order.information
+    p
+        p Количество #{order.number}
+        p=order.file
+.col.s4
+    p Статус
+    p Всего #{order.juid}
+    p К доплате #{order.prepayment}
+    p Оплачено

@@ -1,0 +1,32 @@
+body {
+  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+}
+a {
+  color: #00B7FF;
+}
+.navLink {
+  width: 100%;
+}
+.child{
+  div {
+    height: 0;
+    opacity: 0;
+    transition: 0.5s;
+  }
+  p {
+    opacity: 0;
+    transition: 0.4s;
+    word-break: break-all;
+  }
+}
+.child {
+  &.animate{
+    div {
+      height: 20em;
+      opacity: 1;
+    }
+    p {
+      opacity: 1;
+    }
+  }
+}
