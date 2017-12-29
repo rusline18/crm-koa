@@ -18,7 +18,7 @@ router
     .get('/user', async(ctx) => {
     auth(ctx);
     try {
-            let orders = await Order.find().lean().exec((err, doc) => {
+            let orders = await Order.find({action: true}).lean().exec((err, doc) => {
                 doc.map((order) => {
                     if (order.status === 0){
                         order.status = 'Дизайнера';
@@ -42,11 +42,12 @@ router
     })
     .get('/order/:id', async(ctx) => {
         try {
-            let order = await Order.findOne({orderId: ctx.params.id}).exec((err, id) => {
-                if (err) return err;
-                return id;
+            let order = await Order.findOne({orderId: ctx.params.id}).lean().exec((err, doc) => {
+                doc.createdAt = moment(doc.createdAt).local('ru').format('DD MMMM YYYY H:mm');
+                return doc;
             });
-            await ctx.render('order_view', {order})
+            console.log(order);
+            await ctx.render('order_view', {order});
         } catch(err) {
             await console.log(err);
         }
