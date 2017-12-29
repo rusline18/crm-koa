@@ -1,4 +1,4 @@
-.col.s4
+.col.s3
     p От #{order.createdAt}
     p Автор #{order.user}
     p Сотрудник #{order.user}
@@ -9,11 +9,18 @@
 .col.s4
     p
         p=order.information
-    p
+.col.s2
         p Количество #{order.number}
         p=order.file
-.col.s4
+.col.s3
     p Статус
     p Всего #{order.juid}
     p К доплате #{order.prepayment}
     p Оплачено
+.col.s12.footer-order
+    a.btn(src='#') Выполнить
+    a.btn(src='#') Доставка
+    a.btn(src='#') Отказ
+    a.btn(src='#') Чек
+    a.btn(src='#') Полный просмотр
+    a.btn(src='#') Редактировать
