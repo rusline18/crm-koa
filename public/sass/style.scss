@@ -22,8 +22,11 @@ a {
 .child {
   &.animate{
     div {
-      height: 20em;
+      height: 18em;
       opacity: 1;
+    }
+    .footer-order{
+      height: 5em;
     }
     p {
       opacity: 1;

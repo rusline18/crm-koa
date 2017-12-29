@@ -28,10 +28,14 @@ a {
 
 /* line 24, ../sass/style.scss */
 .child.animate div {
-  height: 20em;
+  height: 18em;
   opacity: 1;
 }
 /* line 28, ../sass/style.scss */
+.child.animate .footer-order {
+  height: 5em;
+}
+/* line 31, ../sass/style.scss */
 .child.animate p {
   opacity: 1;
 }
