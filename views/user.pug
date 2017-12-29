@@ -24,8 +24,8 @@ block content
                         a(href='/logout') Выйти
     .row
         div(class='col s3')
-            ul#slide-out.side-nav
-                +navLink('/users', 'Заказы', 'account_balance_wallet')
+            ul
+                +navLink('/user', 'Заказы', 'account_balance_wallet')
                 +navLink('#', 'Доставка', 'local_shipping')
                 +navLink('#', 'Поломки', 'build')
                 +navLink('#', 'Закупки', 'local_shipping')
@@ -33,18 +33,6 @@ block content
                 +navLink('#', 'Партнеры', 'person')
                 +navLink('#', 'Guide', 'bookmark')
                 +navLink('#', 'Контакты', 'contacts')
-            a.button-collapse(href='#' data-activates='slide-out')
-                i.material-icons menu
-
-            //ul
-            //    +navLink('/users', 'Заказы', 'account_balance_wallet')
-            //    +navLink('#', 'Доставка', 'local_shipping')
-            //    +navLink('#', 'Поломки', 'build')
-            //    +navLink('#', 'Закупки', 'local_shipping')
-            //    +navLink('#', 'Задачи', 'event_available')
-            //    +navLink('#', 'Партнеры', 'person')
-            //    +navLink('#', 'Guide', 'bookmark')
-            //    +navLink('#', 'Контакты', 'contacts')
         div(class='col s9')
             h4 Добро пожаловать #{username}
             .fixed-action-btn
