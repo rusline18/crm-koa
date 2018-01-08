@@ -1,7 +1,9 @@
-    const Router = require('koa-router'),
-        Order = require('../models/order'),
-        moment = require('moment'),
-        router = new Router();
+const Router = require('koa-router'),
+    Order = require('../models/order'),
+    fs = require('fs'),
+    path = require('path'),
+    moment = require('moment'),
+    router = new Router();
 
 moment.updateLocale('ru', {
     months: ['Январь', 'Февраль', 'Март', 'Апрель', 'Май', 'Июнь', 'Июль', 'Август', 'Сентябрь', 'Октябрь', 'Ноябрь', 'Декабрь']
@@ -14,8 +16,9 @@ class Clietn {
     }
 }
 
+//order
 router
-    .get('/user', async(ctx) => {
+    .get('/orders', async(ctx) => {
     auth(ctx);
     try {
             let orders = await Order.find({action: true}).lean().exec((err, doc) => {
@@ -54,12 +57,15 @@ router
     })
     .post('/create-order', async ctx => {
         let request = ctx.request.body;
-        let file = request.files;
+        let file = request.files.image;
         let fields = request.fields;
-        let pathUpload = file.image.path;
+        let parse = file.name.substr(file.name.lastIndexOf('.') + 1);
+        let pathUpload = path.join(__dirname,'../public/upload/'+new Date().getTime()+'.'+parse);
+        fs.rename(file.path, pathUpload, (err) => {
+            console.log(err);
+        });
         let arrTags = fields.tags;
-        let parse = pathUpload.split(/\\/);
-        fields.file = `${parse[4]}/${parse[5]}/${parse[6]}`;
+        fields.file = pathUpload;
         Array.isArray(fields.tags) === false ? fields.tags = arrTags.split(',') : false;
         fields.client = new Clietn(fields.name, fields.phone, fields.email);
         fields.user = ctx.state.user;
@@ -71,6 +77,12 @@ router
             ctx.body = await false
         }
     });
+
+//helpdesk
+router
+    .get('/helpdesk', async(ctx) => {
+    await ctx.render('helpdesk/index', {title: 'HelpDesk'})
+});
 
 function auth(ctx) {
     if(!ctx.isAuthenticated()){
