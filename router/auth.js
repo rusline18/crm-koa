@@ -32,7 +32,7 @@ router
                 await ctx.render('login', {title: 'Авторизация', message: 'Неверный логин или пароль'});
             } else {
                 ctx.login(user, async (err) => {
-                    await err ? ctx.body = err : ctx.redirect('/user');
+                    await err ? ctx.body = err : ctx.redirect('/orders');
                 });
             }
         })(ctx)
