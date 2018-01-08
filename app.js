@@ -16,11 +16,11 @@ app.keys = ['Secret CRM Key'];
 app.use(session({}, app));
 app.use(logger());
 app.use(bodyParser({
-    formidable:{
-        uploadDir: path.join(__dirname + '/public/upload/'),
-        keepExtensions: true},
+    // formidable:{
+    //     uploadDir: path.join(__dirname + '/public/upload/'),
+    //     keepExtensions: true},
     multipart: true,
-    urlencoded: true
+    // urlencoded: true
 }));
 app.use(serve(__dirname + '/public'));
 app.use(views(__dirname + '/views', {extension: 'pug'}));
